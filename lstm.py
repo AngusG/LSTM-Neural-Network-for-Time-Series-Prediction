@@ -22,7 +22,7 @@ def load_data(filename, seq_len, train_ratio, normalise_window):
     below (y_train = ...), we still end up 
     with a nice even number, e.g 50 '''
     seq_len += 1
-    result = np.zeros((len(data), seq_len, 1))
+    result = np.zeros((len(data)-seq_len, seq_len, 1))
 
     # this shouldn't affect the sine wave data
     if normalise_window:
@@ -37,7 +37,7 @@ def load_data(filename, seq_len, train_ratio, normalise_window):
     train = result[:split, :, :]
     test = result[split:, :, :]
 
-    # np.random.shuffle(train)
+    #np.random.shuffle(train)
 
     # take all but the last data point of each window as input
     x_train = train[:, :-1, :]
